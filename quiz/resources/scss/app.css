@@ -1,0 +1,132 @@
+body {
+  background-color: red;
+}
+
+body header {
+  height: 100vh;
+}
+
+body .dodajCzasownik .errors {
+  min-height: 10vh;
+}
+
+body .dodajRzeczownik .errors {
+  min-height: 10vh;
+}
+
+body .containerQuiz .BledyQuiz {
+  height: 20vh;
+}
+
+body .containerQuiz {
+  background-color: darkgray;
+}
+
+body .containerQuiz .alert-danger {
+  height: 9vh;
+}
+
+body menu {
+  font-size: 20px;
+}
+
+body menu .active {
+  background-color: dodgerblue;
+  padding-left: 20% !important;
+}
+
+body menu .nav-item a {
+  padding-left: 20% !important;
+}
+
+body .cell {
+  height: 80px;
+  color: #fff;
+  text-decoration: none;
+}
+
+body .top {
+  height: 15vh;
+}
+
+body .top .slowoDoPrzetlumaczenia {
+  font-size: 30px;
+}
+
+body .panel {
+  background-color: darkgray;
+}
+
+body .klawiatura {
+  color: #fff;
+}
+
+body .klawiatura .litery .litera {
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 10%;
+  font-size: 25px;
+  margin-left: 0.5vh;
+}
+
+body .klawiatura .litery .litera button {
+  text-decoration: none;
+  color: #000;
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+body .inputDoWpisywaniaLiter, body .czasownikInput, body .rzeczownikInput {
+  border: none;
+  color: #fff;
+  border-bottom: 1px solid #000;
+  outline: none;
+  font-size: 25px;
+  background-color: transparent;
+}
+
+body .containerCzasowniki, body .containerRzeczowniki, body .showRzeczownik, body .showCzasownik, body .containerBrakSlow {
+  background-color: darkgray;
+}
+
+body table_row a {
+  overflow: hidden;
+}
+
+body .table_row a:hover {
+  cursor: pointer;
+  -webkit-animation: highlighted 0.3s ease-in-out forwards;
+          animation: highlighted 0.3s ease-in-out forwards;
+}
+
+@-webkit-keyframes highlighted {
+  0% {
+    background: darkgray;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, darkgray), color-stop(50%, dodgerblue), color-stop(95%, darkgray));
+    background: linear-gradient(darkgray 5%, dodgerblue 50%, darkgray 95%);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+
+@keyframes highlighted {
+  0% {
+    background: darkgray;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(5%, darkgray), color-stop(50%, dodgerblue), color-stop(95%, darkgray));
+    background: linear-gradient(darkgray 5%, dodgerblue 50%, darkgray 95%);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+}
+/*# sourceMappingURL=app.css.map */

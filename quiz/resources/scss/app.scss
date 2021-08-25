@@ -1,0 +1,94 @@
+body{
+
+    header{
+        height:100vh;
+    }
+    .dodajCzasownik .errors{
+        min-height:10vh;
+    }
+    .dodajRzeczownik .errors{
+        min-height:10vh;
+    }
+    .containerQuiz .BledyQuiz{
+        height:20vh;
+    }
+    background-color:red;   
+    .containerQuiz{
+        background-color: darkgray;
+        .alert-danger{
+            height:9vh;
+        }
+    }
+    menu{
+        font-size:20px;
+    }
+    menu .active{
+        background-color: dodgerblue;
+        padding-left:20% !important;
+    }
+    menu .nav-item a{
+        padding-left:20% !important;
+    }
+    .cell{
+        height:80px;
+        color:#fff;
+        text-decoration: none;
+    }
+    .top{
+        .slowoDoPrzetlumaczenia{
+            font-size: 30px;
+        }
+        
+        height:15vh;
+        
+    }
+    .panel{
+        background-color: darkgray;
+  
+    }
+    .klawiatura{
+        color:#fff;
+        .litery{
+
+            .litera{
+                height:40px;
+                width:40px;
+                color:#fff;
+                border:1px solid #000;
+                border-radius: 10%;
+                font-size: 25px;
+                margin-left:0.5vh;
+                button{
+                    text-decoration: none;
+                    color:#000;
+                    width:100%;
+                    height:100%;
+                    font-family: 'Noto Sans JP', sans-serif;
+                }
+            }
+        }
+    } 
+    .inputDoWpisywaniaLiter, .czasownikInput, .rzeczownikInput{
+        border:none;
+        color:#fff;
+        border-bottom: 1px solid #000;
+        outline: none;
+        font-size: 25px;
+        background-color: transparent;
+    }
+    .containerCzasowniki, .containerRzeczowniki, .showRzeczownik, .showCzasownik, .containerBrakSlow{
+        background-color: darkgray;
+    }
+    table_row a{
+        overflow: hidden;
+    }
+    .table_row a:hover{
+        cursor: pointer;
+        animation:highlighted 0.3s ease-in-out forwards;
+    }
+    @keyframes highlighted {
+        0%{background:darkgray;transform:scale(1.0)}
+        100%{background:linear-gradient(darkgray 5%,dodgerblue 50%,darkgray 95%);transform:scale(1.1);}
+    }
+
+}
