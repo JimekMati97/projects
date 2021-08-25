@@ -1,0 +1,121 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+$containers:containerMenu,containerDishes,containerDish;
+$small:1000px;
+//body
+body{
+
+    background-color:gainsboro;
+    font-size: 20px;
+    color:#fff;
+    //przyciski do sterowania liczbą produktów do zamówienia
+    .plus, .minus, .count, .count input{
+        width:30px; 
+        font-size: 15px;
+        color:burlywood;
+        height:30px;
+        #plus_btn, #minus_btn{
+            width: 100%;
+            height:100%;
+        }
+    }
+    //Strona Home
+    .containerHome{
+        //1st row
+        .row:nth-child(1){
+            //nagłówek
+            .welcome_text h1{
+                font-size: 35px;
+            }
+        }
+        //2sc row
+        .row:nth-child(2){
+            
+            height:20vh;
+            //przycisk "złóż zamówienie"
+            .make_order{
+                background-color:rgb(230, 171, 120);
+                font-family: 'Times New Roman', Times, serif;
+                transition:background-color 0.3s ease;
+                &:hover{
+                    background-color: rgb(231, 163, 103);
+                }
+            }
+
+        }
+    }
+    //Strona Menu
+    .containerMenu{
+        position: relative;
+        color:#000;
+        height:50vh;
+        //karta z grupą dań
+        .card-body{
+            background-color:gainsboro; 
+        }
+        //Przyciski: wybierający grupę dań; zatwierdź i zapłać;
+        .dish_group_btn, .confirm_btn{
+            background-color:rgb(230, 171, 120);
+            font-family: 'Times New Roman', Times, serif;
+        }
+        //zamówione dania
+        .ordered{
+            font-size: 17px;
+        }
+
+    }
+    //Strona Dania z konkretnej grupy
+    .containerDishes{
+        
+        .ordered{
+            font-size: 17px;
+        }
+        color:rgb(49, 46, 46);
+        .single_dish_btn{
+            background-color:rgb(230, 171, 120);
+            color:#fff;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .orders{
+            .fixed{
+                @media screen and (min-width: 0px) and (max-width:767px ){
+                    position: unset;
+                }
+                @media screen and (min-width: 767px){
+                    position: absolute;
+                }
+            }
+
+
+            
+        }
+        .confirm_btn{
+            font-size: 17px;
+        }
+        
+    }
+    .containerDish{
+        background-color:silver;
+        color:rgb(49, 46, 46);
+        .one_card{
+           
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+    }
+    .containerApprove{
+        img{
+            width:4vh;
+            height:4vh;
+        }
+    }
+
+
+}
