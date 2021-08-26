@@ -21,7 +21,7 @@ class HomeController extends Controller
         }
         
         
-        //dd(session('user_i'));
+        //dd(session('user_id'));
         
         return view('home');
     }
