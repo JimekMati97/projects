@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block content%}
+    <div class="container text-dark">
+        {%for singleNot in notifList%}
+            <div class="notifBlock mt-5 col-12">
+                <div class="row msg d-flex col-12">
+
+                        {% if singleNot.addressee == user and singleNot.verified == "noResponse" %}                        
+                            
+                            <img class="profileImg" src="/static/images/{{singleNot.sender.profileImg}}" alt="">
+                            <p class="nameofSenderAndText col-4 d-flex align-items-center">{{singleNot.sender.name}} {{singleNot.sender.surname}} has sent you an invitation</p>
+                        
+                            <div class="buttonsArea d-flex col-7 justify-content-end">
+                                <form action="{% url 'acceptInvit' userId=user.id relationId=singleNot.id %}" method="post">{%csrf_token%}<button class="btn btn-primary" type="submit">Accept</button></form>
+                                <form action="{% url 'declineInvit' userId=user.id relationId=singleNot.id%}" method="post">{%csrf_token%}<button class="btn btn-danger mx-1" type="submit">Discard</button></form>
+                            </div>
+                        {% endif %}
+
+                        {% if singleNot.verified == "accepted" or singleNot.verified == "rejected" and singleNot.sender == user%}
+                            {% if singleNot.verified == "accepted" %}
+                            <p class="">{{singleNot.addressee.name}} {{singleNot.addressee.surname}} has accepted your invitation</p>
+                            {% else %}
+                            <p class="">{{singleNot.addressee.name}} {{singleNot.addressee.surname}} has declined your invitation</p>
+                            {% endif %}
+                        {% endif %}
+                   
+                </div>
+            </div>
+            <hr>
+        {%empty%}
+            <h3 class="h3 mt-5">You don't have any new notifications.</h3>
+        {%endfor%}
+    </div>
+{%endblock%}

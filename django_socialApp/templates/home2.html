@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <div class="container">
+        <!-- {% for item in data %}
+            {{item}}
+        {% endfor %} -->
+        <h1 class="h1">You are in home2 directory.</h1>
+        {%if user.is_authenticated%}
+            <p class="text">{{user.email}}</p>
+        {%endif%}
+    </div>
+{%endblock%}
