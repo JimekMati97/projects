@@ -1,0 +1,53 @@
+{%extends "base.html"%}
+
+{%block content%}
+    <div class="container col-12 col-md-8 col-lg-6 col-xl-4">
+        <div class="row">
+            <h2 class="d-flex justify-content-center h2 text-dark">Find new contacts</h2>
+        </div>
+        <div class="row">
+            <div class="form">
+                <form action="" method="post" class="form-group d-flex justify-content-center flex-column">
+                    {%csrf_token%}
+                    {{form.as_table}}
+                    <button class="btn btn-primary m-auto w-25" type="submit">Search</button>
+                </form>                             
+            </div>
+        </div>
+        <div class="row">
+            <div class="contacts">
+                {%for message in messages%}
+                <p>{{message}}</p>
+                {%endfor%}
+                {% for account, relation in contacts %}
+                <div class="row contact">
+                    <!-- <div class="name">{{contact.email}}</div> -->
+                    <div class="personAccountDetails d-flex align-items-center">
+
+                        <img class="profileImgOnSearchView" src="/static/images/{{account.profileImg}}" alt="">
+                        <p class="ml-5">{{account.name}} {{account.surname}} - 
+                    
+                
+                            {% if relation.sender == user and relation.verified == "noResponse" %}
+                                Invitaion already sent!
+                            {% elif relation.addressee == user and relation.verified == "noResponse" %}
+                                <a href="" class="btn btn-danger">Reject</a>
+                                <a href="" class="btn btn-success">Accept</a>
+                            {% elif relation.verified == "accepted" %}
+                                Already in your contacts!
+                            {% else %}
+                                <a href="{% url 'sendIvit' addressee=account.id %}" class="btn btn-success">Send invit</a>
+                            {% endif %}
+                        </p>
+                   
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+    </div>
+{%endblock%}
+
