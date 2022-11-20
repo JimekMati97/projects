@@ -6,7 +6,6 @@ from email.message import Message
 from http.client import HTTPResponse
 import math
 from multiprocessing import context, get_context
-from nis import match
 import re
 from time import timezone
 from urllib import request
@@ -75,8 +74,6 @@ class MainView(TemplateView):
         likeForm=LikeForm
         from itertools import chain
         context=dict()
-        # context['posts']=Post.objects.filter(Q(author=self.request.user.id)|Q(author__in = AccountsRelation.objects.filter((Q(sender=request.user)|Q(addressee=request.user))
-        # &Q(verified="accepted")).values('addressee')))
 
         addresseePosts=Post.objects.filter(Q(author=self.request.user.id)|Q(author__email__in = AccountsRelation.objects.filter((Q(sender=request.user))
         &Q(verified="accepted")).values('addressee'))).order_by("-time")
@@ -109,8 +106,6 @@ class MainView(TemplateView):
              else:
                 post.liked=False
             
-        # for post in context['posts']:
-        #     MainView.parseTime(post)
 
         return self.render_to_response({'commentForm':commentForm,"likeForm":likeForm,"posts":context['posts'],'notifs':context['notifs'],'activePeople':context['activeFriends']})
     
@@ -149,10 +144,7 @@ class MainView(TemplateView):
 
             return JsonResponse({"error": ""}, status=400)
 
-
-
     
-
     @staticmethod
     def parseTime(post):
         
@@ -283,12 +275,6 @@ class SaveMsg(RedirectView):
         addresse=self.request.POST.get("userAddressee")
         message=self.request.POST.get("msg")
         me=self.request.user
-        # print(me,addresse)
-        # conv=Conversation.objects.filter((Q(user1=me)&Q(user2__id=addresse))|(Q(user1__id=addresse)&Q(user2=me)))
-        # #insert into comment model
-       
-        # Messege.objects.create(convId=conv[0],author=me,messege=message)
-        # return JsonResponse({"instance": "sent"}, status=200)
     
         global conv2
         conv2=Conversation.objects.filter((Q(user1=me)&Q(user2__id=addresse))|(Q(user1__id=addresse)&Q(user2=me)))
@@ -436,8 +422,6 @@ class Notifs(ListView):
 
 class UpdateNotifOnDeclination(RedirectView):
 
-    #url="/search"
-
     def get_redirect_url(self, *args, **kwargs):
      
         AccountsRelation.objects.filter(id=kwargs.get('relationId')).update(verified="rejected",addresseeInformed="yes")
@@ -463,15 +447,7 @@ class SearchContacts(FormView):
     form_class=SearchForm
     success_url="search"
     
-    # def get_context_data(self, **kwargs):
-    #     context= super().get_context_data(**kwargs)
-    #     username=self.request.POST.get('contact')
-    #     context['contacts']=Account.objects.filter(Q(email__startswith=username)|Q(email__contains=username))
-    #     return context
-    
-    # def form_valid(self,form):
-    #     username=form.cleaned_data['contact']
-    #     accounts=Account.objects.filter(Q(email_startswith=username)|Q(email_contains=username))
+
     def post(self,request):
         username=request.POST.get('contact')
         accounts=Account.objects.filter(Q(email__startswith=username)|Q(email__contains=username)).exclude(email=request.user.email)
@@ -503,58 +479,4 @@ class DeletePost(DeleteView):
     pass
 class UpdatePost(UpdateView):
     pass
-    # def get_queryset(self):
-    #     kwargs=self.get_form_kwargs()
-    #     user=Account.objects.filter(email=kwargs.get('username'))
-    #     self.queryset=Post.objects.filter(author=user).order_by("-time",)
-    #     print(self.queryset)
-    #     return super().get_queryset()
 
-    # def get_form_kwargs(self):
-    #     return super().get_form_kwargs()
-
-    # def get_context_data(self, **kwargs):
-    #     context= super().get_context_data(**kwargs)
-    #     user=Account.objects.filter(email=kwargs.get('username'))
-    #     posts=Post.objects.filter(author=user).order_by("-time",)
-
-    #     context['posts']=posts
-    #     #print(context)
-    #     return context
-
-    # def get(self,request,**kwargs):
-    #     accountDetails=request.user
-    #     posts=Post.objects.filter(author=request.user).order_by("-time",)
-        #friends=AccountsRelation.objects.filter((Q(sender=request.user)|Q(addressee=request.user) & Q(verified="accepted"))).count()
-        # if AccountsRelation.objects.filter(account=request.user.id).exists():
-        #     friends_Ids=AccountsRelation.objects.filter(account=request.user.id)
-        #     context=None
-        #     friends=[]
-        #     for friendId in friends_Ids:
-        #         friends.append(Account.objects.filter(id=friendId.account_related_to)[0].name)
-        #     if friends is not None:
-        #         context=friends
-        #     else:
-        #         context="make some"
-
-        #return render(request,"profile.html",{"accountDetails":accountDetails,"posts":posts,"friendsCount":friends})
-        #return render(request,"profile.html",{"accountDetails":accountDetails,"posts":posts})
-
-# def main(request):
-
-#     if request.method=="POST":
-#         form=DateForm(request.POST)
-#         if form.is_valid():
-#             import datetime
-#             wpisanaData=request.POST['date']
-
-#             newDate=datetime.datetime.now()
-          
-#             tz_pl=newDate.astimezone(pytz.timezone('Poland'))
-
-#             print(tz_pl.second)
-#             return render(request,"home.html",{'form':form})
-#     else:
-#         form=DateForm()
-        
-#     return render(request,"home.html",{'form':form})
