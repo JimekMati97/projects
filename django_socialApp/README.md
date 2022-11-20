@@ -10,7 +10,7 @@ model.
 * [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
 
-## Instalation
+## Installation
 Clone to your local file system, folder from projects repozitory, called django_socilapp. 
 In a your local folder, create virtual environment, for example:
 ```
