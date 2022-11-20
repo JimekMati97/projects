@@ -144,62 +144,62 @@ class MainView(TemplateView):
 
             return JsonResponse({"error": ""}, status=400)
 
-    
-    @staticmethod
-    def parseTime(post):
+#LEGACY CODE
+#     @staticmethod
+#     def parseTime(post):
         
-        import itertools as i
-        from django.utils import timezone
+#         import itertools as i
+#         from django.utils import timezone
 
-        timestamp=timezone.localtime()
+#         timestamp=timezone.localtime()
         
-        timeDiffAfterPub=timestamp-post.time
+#         timeDiffAfterPub=timestamp-post.time
        
-        validTime=dict()
-        #check if post has been added more than 24 hours late
+#         validTime=dict()
+#         #check if post has been added more than 24 hours late
 
-        if "day" in str(timeDiffAfterPub) or "days" in str(timeDiffAfterPub):
+#         if "day" in str(timeDiffAfterPub) or "days" in str(timeDiffAfterPub):
             
-            import re
+#             import re
         
-            pattern=re.compile("([0-9]+ (?:day|year|month|days))")
-            matches=pattern.findall(str(timeDiffAfterPub))
-            timeCounterAndItsType=tuple(matches[0].split(" "))
+#             pattern=re.compile("([0-9]+ (?:day|year|month|days))")
+#             matches=pattern.findall(str(timeDiffAfterPub))
+#             timeCounterAndItsType=tuple(matches[0].split(" "))
 
             
-            dayCount=int(timeCounterAndItsType[0])
+#             dayCount=int(timeCounterAndItsType[0])
 
-            if dayCount>30 and dayCount<=365:
-                validTime.setdefault("month",math.floor(dayCount/30))
+#             if dayCount>30 and dayCount<=365:
+#                 validTime.setdefault("month",math.floor(dayCount/30))
                 
-            elif dayCount>365:
-                validTime.setdefault("year",math.floor(dayCount/365))
+#             elif dayCount>365:
+#                 validTime.setdefault("year",math.floor(dayCount/365))
 
-            else:
-                validTime.setdefault("day",dayCount)
+#             else:
+#                 validTime.setdefault("day",dayCount)
                 
-        else:
-            timePeriods=("hour","minute","second")
-            dividedTime=list(int(round(float(el))) for el in str(timeDiffAfterPub).split(":"))
+#         else:
+#             timePeriods=("hour","minute","second")
+#             dividedTime=list(int(round(float(el))) for el in str(timeDiffAfterPub).split(":"))
 
-            pairs=i.zip_longest(timePeriods,dividedTime)
+#             pairs=i.zip_longest(timePeriods,dividedTime)
             
-            usedTimePeriods=i.dropwhile(lambda a:a[1]==0,pairs)
-            firstUsedTimePeriods=list(usedTimePeriods)[:1]
+#             usedTimePeriods=i.dropwhile(lambda a:a[1]==0,pairs)
+#             firstUsedTimePeriods=list(usedTimePeriods)[:1]
            
-            validTime.setdefault(firstUsedTimePeriods[0][0],firstUsedTimePeriods[0][1])
+#             validTime.setdefault(firstUsedTimePeriods[0][0],firstUsedTimePeriods[0][1])
 
-        validTime=list(validTime.items())
+#         validTime=list(validTime.items())
         
-        #checking if index schould be plural
-        key=validTime[0][0]
-        if validTime[0][1]>1:
-            key=validTime[0][0]+"s"
+#         #checking if index schould be plural
+#         key=validTime[0][0]
+#         if validTime[0][1]>1:
+#             key=validTime[0][0]+"s"
 
-        modifiedTimeKey=(key,validTime[0][1])
+#         modifiedTimeKey=(key,validTime[0][1])
       
-        #update
-        post.timestamp={modifiedTimeKey[0]:modifiedTimeKey[1]}
+#         #update
+#         post.timestamp={modifiedTimeKey[0]:modifiedTimeKey[1]}
         
 
     def form_valid(self,form):       
