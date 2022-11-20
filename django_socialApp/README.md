@@ -6,12 +6,11 @@ model.
 ## Table of Contents
 * [Instalation](#instalation)
 * [Technologies Used](#technologies-used)
-* [Setup](#setup)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
 * [Contact](#contact)
 
-##Instalation
+## Instalation
 Clone to your local file system, folder from projects repozitory, called django_socilapp. 
 In a your local folder, create virtual environment, for example:
 ```
@@ -27,7 +26,7 @@ mkdir src
 cd src
 pip django install
 ```
-After installing django, you can copy whole project (comments), app (coApp), static, templates, db.sqlite3 and manage.py
+After installing django, you can copy whole project (comments), app (coApp), static, templates, db.sqlite3 and manage.py to src folder.
 Before you start django server, you need to install a Pillow module:
 ```
 python -m pip install Pillow
@@ -39,10 +38,12 @@ python manage.py runserver
 ## Technologies Used
 - Python 3.9.13
 - Django 4.1.3
+- JavaScript ES6
 - MySql
 - CSS 3
 - HTML 5
 - Bootstrap 4
+- Ajax 
 
 
 ## Project Status
