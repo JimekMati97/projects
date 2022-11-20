@@ -32,7 +32,6 @@ class MyAccountManager(BaseUserManager):
         
         user=self.create_user(
             email=self.normalize_email(email),
-            #username=username,
             password=password,
             )
         user.is_admin=True
@@ -65,11 +64,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
     hide_email=models.BooleanField(default=True)
 
     objects=MyAccountManager()
-    #password=models.CharField(blank=False,max_length=25,error_messages={'required':'Password has to be set'})
-    #profileImg=models.ImageField(upload_to=,null=True,blank=True, upload_to='img/')
 
     USERNAME_FIELD='email'
-    #REQUIRED_FIELDS=['username']
 
     def save(self,*args,**kwargs):
         
@@ -96,7 +92,6 @@ class Commentt(models.Model):
     author=models.ForeignKey(Account,on_delete=models.CASCADE)
     text=models.CharField(max_length=200,null=False,blank=True)
     time=models.DateTimeField(default=timezone.now)
-    #timedelta=models.JSONField()
 
     def __str__(self):
         return self.text
