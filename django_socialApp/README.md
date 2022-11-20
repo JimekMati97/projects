@@ -4,7 +4,7 @@ In addition, it is an intermediary tool in text communication in the 1 to 1 pers
 model.
 
 ## Table of Contents
-* [Instalation](#instalation)
+* [Installation](#installation)
 * [Technologies Used](#technologies-used)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
