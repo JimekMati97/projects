@@ -322,7 +322,7 @@ class LoginView(FormView):
             Account.objects.filter(id=self.request.user.id).update(is_loggedIn=True)
             return super().form_valid(form)
         else:
-         
+            messages.error(self.request,'Login failed. Wrong email or password.')
             return super().form_invalid(form)
 
 
