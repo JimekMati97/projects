@@ -11,4 +11,7 @@ a layout structure, you can see on picture below.
 Install requirements:
 ```
 pip install -r requirements.txt
+
 ```
+
+To make saving job offers possible, import **jobOffers.sql** file into your database.
